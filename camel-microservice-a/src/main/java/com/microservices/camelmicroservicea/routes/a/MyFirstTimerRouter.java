@@ -2,6 +2,8 @@ package com.microservices.camelmicroservicea.routes.a;
 
 import java.time.LocalDateTime;
 
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyFirstTimerRouter extends RouteBuilder{
 	
+
 	@Autowired
 	private GetCurrentTimeBean getCurrentTimeBean;
 
@@ -42,6 +45,7 @@ public class MyFirstTimerRouter extends RouteBuilder{
 		.log("${body}")
 		.bean(simpleLoggingProcesssingComponent)
 		.log("${body}")
+		.process(new SimpleLoggingProcesor()) // bean and processor, these both can be used to process body
 		.to("log:first-timer");
 		
 		
@@ -66,4 +70,16 @@ class SimpleLoggingProcesssingComponent{
 	public void process(String message) {
 		logger.info("SimpleLoggingProcesssingComponent - {}",message);
 	}
+}
+
+class SimpleLoggingProcesor implements Processor {
+	
+	private Logger logger = LoggerFactory.getLogger(SimpleLoggingProcesssingComponent.class);
+
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		logger.info("SimpleLoggingProcesor - {}",exchange.getMessage().getBody());
+
+	}
+
 }
