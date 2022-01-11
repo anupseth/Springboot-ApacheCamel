@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component - disabeling the router so it does not produces output and mess up the logs
 public class MyFirstTimerRouter extends RouteBuilder{
 	
 
