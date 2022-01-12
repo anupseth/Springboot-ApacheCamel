@@ -12,8 +12,13 @@ public class ActiveMQSenderRouter extends RouteBuilder{
 		//transform
 		//queue
 		
-		from("timer:active-mq-timer?period=10000")
-		.transform().constant("My Message for active mq")
+//		from("timer:active-mq-timer?period=10000")
+//		.transform().constant("My Message for active mq")
+//		.log("${body}")
+//		.to("activemq:my-activemq-queue");
+		
+		
+		from("file:files/json")
 		.log("${body}")
 		.to("activemq:my-activemq-queue");
 	}
