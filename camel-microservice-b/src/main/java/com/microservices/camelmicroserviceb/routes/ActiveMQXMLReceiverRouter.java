@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.microservices.camelmicroserviceb.pojo.CurrencyExchange;
 
-@Component
+//@Component
 public class ActiveMQXMLReceiverRouter extends RouteBuilder{
 
 	
