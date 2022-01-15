@@ -14,7 +14,7 @@ public class CurrencyExchangeController {
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public CurrencyExchange findConversionValue(@PathVariable String from, @PathVariable String to) {
 		
-		return new CurrencyExchange(1l,"USD","INR",BigDecimal.TEN);
+		return new CurrencyExchange(1l,from,to,BigDecimal.TEN);
 	}
 	
 }
