@@ -19,12 +19,17 @@ public class MyFileRouter extends RouteBuilder{
 			.otherwise()
 				.log("Not a XML file")
 		.end()
+		.to("direct://log-file-values")
+		.to("file:files/output");
+		
+		
+		//creating a resuable route, so we can direct the control to this route from anywhere in the project
+		from("direct:log-file-values")
 		.log("-------------")
 		.log("${messageHistory}")
 		.log("-------------")
 		.log("camelFileNameOnly = ${headers.camelFileNameOnly}")
-		.log("Absolute path :  ${file:absolute.path}")
-		.to("file:files/output");
+		.log("Absolute path :  ${file:absolute.path}");
 		
 	}
 
